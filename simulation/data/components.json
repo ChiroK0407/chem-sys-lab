@@ -1,0 +1,345 @@
+{
+  "_metadata": {
+    "source": "NIST WebBook (webbook.nist.gov) + Perry's Chemical Engineers Handbook 8th ed.",
+    "units": {
+      "cp": "J/(kg·K)",
+      "density": "kg/m3",
+      "viscosity": "Pa·s",
+      "thermal_conductivity": "W/(m·K)",
+      "temperature": "K",
+      "pressure": "Pa",
+      "boiling_point": "K at 101325 Pa",
+      "molecular_weight": "g/mol"
+    },
+    "notes": "Properties given at reference temperature T_ref. Use thermo/cp_correlations.py for T-dependent values."
+  },
+
+  "water": {
+    "name": "Water",
+    "formula": "H2O",
+    "molecular_weight": 18.015,
+    "boiling_point": 373.15,
+    "phase_at_ref": "liquid",
+    "T_ref": 298.15,
+    "properties": {
+      "cp": 4182.0,
+      "density": 997.0,
+      "viscosity": 8.90e-4,
+      "thermal_conductivity": 0.607
+    },
+    "temperature_variants": {
+      "303K_30C":  {"cp": 4178, "density": 995.7, "viscosity": 7.97e-4, "thermal_conductivity": 0.615},
+      "323K_50C":  {"cp": 4181, "density": 988.1, "viscosity": 5.47e-4, "thermal_conductivity": 0.644},
+      "343K_70C":  {"cp": 4190, "density": 977.8, "viscosity": 4.04e-4, "thermal_conductivity": 0.663},
+      "363K_90C":  {"cp": 4205, "density": 965.3, "viscosity": 3.14e-4, "thermal_conductivity": 0.676},
+      "393K_120C": {"cp": 4244, "density": 943.4, "viscosity": 2.31e-4, "thermal_conductivity": 0.683}
+    },
+    "prandtl_ref": 6.13,
+    "typical_use": ["cooling_water", "steam_condensate", "process_water"]
+  },
+
+  "ethanol": {
+    "name": "Ethanol",
+    "formula": "C2H5OH",
+    "molecular_weight": 46.068,
+    "boiling_point": 351.44,
+    "phase_at_ref": "liquid",
+    "T_ref": 298.15,
+    "properties": {
+      "cp": 2440.0,
+      "density": 785.0,
+      "viscosity": 1.08e-3,
+      "thermal_conductivity": 0.167
+    },
+    "temperature_variants": {
+      "303K_30C":  {"cp": 2470, "density": 780.9, "viscosity": 9.9e-4,  "thermal_conductivity": 0.164},
+      "323K_50C":  {"cp": 2530, "density": 763.7, "viscosity": 7.0e-4,  "thermal_conductivity": 0.158},
+      "343K_70C":  {"cp": 2600, "density": 746.0, "viscosity": 5.1e-4,  "thermal_conductivity": 0.151}
+    },
+    "prandtl_ref": 15.8,
+    "typical_use": ["solvent", "product_stream", "fermentation"]
+  },
+
+  "methanol": {
+    "name": "Methanol",
+    "formula": "CH3OH",
+    "molecular_weight": 32.042,
+    "boiling_point": 337.85,
+    "phase_at_ref": "liquid",
+    "T_ref": 298.15,
+    "properties": {
+      "cp": 2530.0,
+      "density": 791.0,
+      "viscosity": 5.44e-4,
+      "thermal_conductivity": 0.200
+    },
+    "temperature_variants": {
+      "303K_30C":  {"cp": 2545, "density": 786.5, "viscosity": 5.0e-4,  "thermal_conductivity": 0.197},
+      "323K_50C":  {"cp": 2600, "density": 771.0, "viscosity": 3.9e-4,  "thermal_conductivity": 0.190}
+    },
+    "prandtl_ref": 6.88,
+    "typical_use": ["solvent", "reactant", "product_stream"]
+  },
+
+  "toluene": {
+    "name": "Toluene",
+    "formula": "C7H8",
+    "molecular_weight": 92.141,
+    "boiling_point": 383.78,
+    "phase_at_ref": "liquid",
+    "T_ref": 298.15,
+    "properties": {
+      "cp": 1691.0,
+      "density": 862.0,
+      "viscosity": 5.52e-4,
+      "thermal_conductivity": 0.151
+    },
+    "temperature_variants": {
+      "303K_30C":  {"cp": 1706, "density": 857.3, "viscosity": 5.2e-4,  "thermal_conductivity": 0.149},
+      "323K_50C":  {"cp": 1742, "density": 841.8, "viscosity": 4.2e-4,  "thermal_conductivity": 0.144},
+      "343K_70C":  {"cp": 1779, "density": 825.7, "viscosity": 3.4e-4,  "thermal_conductivity": 0.138},
+      "363K_90C":  {"cp": 1818, "density": 808.9, "viscosity": 2.8e-4,  "thermal_conductivity": 0.132}
+    },
+    "prandtl_ref": 6.19,
+    "typical_use": ["solvent", "aromatic_product", "reformer_stream"]
+  },
+
+  "benzene": {
+    "name": "Benzene",
+    "formula": "C6H6",
+    "molecular_weight": 78.112,
+    "boiling_point": 353.25,
+    "phase_at_ref": "liquid",
+    "T_ref": 298.15,
+    "properties": {
+      "cp": 1740.0,
+      "density": 874.0,
+      "viscosity": 6.04e-4,
+      "thermal_conductivity": 0.144
+    },
+    "temperature_variants": {
+      "303K_30C":  {"cp": 1751, "density": 869.0, "viscosity": 5.6e-4,  "thermal_conductivity": 0.142},
+      "323K_50C":  {"cp": 1789, "density": 853.0, "viscosity": 4.4e-4,  "thermal_conductivity": 0.137},
+      "343K_70C":  {"cp": 1833, "density": 836.0, "viscosity": 3.5e-4,  "thermal_conductivity": 0.131}
+    },
+    "prandtl_ref": 7.29,
+    "typical_use": ["aromatic_solvent", "petrochemical_feed"]
+  },
+
+  "acetone": {
+    "name": "Acetone",
+    "formula": "C3H6O",
+    "molecular_weight": 58.080,
+    "boiling_point": 329.20,
+    "phase_at_ref": "liquid",
+    "T_ref": 298.15,
+    "properties": {
+      "cp": 2170.0,
+      "density": 784.5,
+      "viscosity": 3.06e-4,
+      "thermal_conductivity": 0.161
+    },
+    "temperature_variants": {
+      "303K_30C":  {"cp": 2190, "density": 779.0, "viscosity": 2.85e-4, "thermal_conductivity": 0.158},
+      "313K_40C":  {"cp": 2220, "density": 770.0, "viscosity": 2.55e-4, "thermal_conductivity": 0.154}
+    },
+    "prandtl_ref": 4.12,
+    "typical_use": ["solvent", "ketone_product"]
+  },
+
+  "n_hexane": {
+    "name": "n-Hexane",
+    "formula": "C6H14",
+    "molecular_weight": 86.177,
+    "boiling_point": 341.87,
+    "phase_at_ref": "liquid",
+    "T_ref": 298.15,
+    "properties": {
+      "cp": 2260.0,
+      "density": 655.0,
+      "viscosity": 2.97e-4,
+      "thermal_conductivity": 0.124
+    },
+    "temperature_variants": {
+      "303K_30C":  {"cp": 2280, "density": 650.2, "viscosity": 2.75e-4, "thermal_conductivity": 0.122},
+      "323K_50C":  {"cp": 2340, "density": 635.0, "viscosity": 2.30e-4, "thermal_conductivity": 0.117}
+    },
+    "prandtl_ref": 5.41,
+    "typical_use": ["solvent", "extraction", "naphtha_cut"]
+  },
+
+  "glycerol": {
+    "name": "Glycerol",
+    "formula": "C3H8O3",
+    "molecular_weight": 92.094,
+    "boiling_point": 563.15,
+    "phase_at_ref": "liquid",
+    "T_ref": 298.15,
+    "properties": {
+      "cp": 2430.0,
+      "density": 1261.0,
+      "viscosity": 9.34e-1,
+      "thermal_conductivity": 0.285
+    },
+    "temperature_variants": {
+      "323K_50C":  {"cp": 2480, "density": 1244.0, "viscosity": 1.5e-1,  "thermal_conductivity": 0.290},
+      "343K_70C":  {"cp": 2530, "density": 1227.0, "viscosity": 4.0e-2,  "thermal_conductivity": 0.295}
+    },
+    "prandtl_ref": 7960,
+    "typical_use": ["viscous_liquid", "biodiesel_byproduct", "pharmaceutical"]
+  },
+
+  "engine_oil_30": {
+    "name": "Engine oil SAE 30",
+    "formula": null,
+    "molecular_weight": null,
+    "boiling_point": null,
+    "phase_at_ref": "liquid",
+    "T_ref": 313.15,
+    "properties": {
+      "cp": 1970.0,
+      "density": 880.0,
+      "viscosity": 4.41e-2,
+      "thermal_conductivity": 0.145
+    },
+    "temperature_variants": {
+      "343K_70C":  {"cp": 2050, "density": 864.0, "viscosity": 1.1e-2,  "thermal_conductivity": 0.142},
+      "373K_100C": {"cp": 2130, "density": 848.0, "viscosity": 3.5e-3,  "thermal_conductivity": 0.138}
+    },
+    "prandtl_ref": 600,
+    "typical_use": ["lube_oil_cooler", "hydraulic_system"]
+  },
+
+  "air": {
+    "name": "Air",
+    "formula": "N2/O2",
+    "molecular_weight": 28.97,
+    "boiling_point": 81.6,
+    "phase_at_ref": "vapor",
+    "T_ref": 298.15,
+    "properties": {
+      "cp": 1005.0,
+      "density": 1.184,
+      "viscosity": 1.849e-5,
+      "thermal_conductivity": 0.02551
+    },
+    "temperature_variants": {
+      "323K_50C":  {"cp": 1007, "density": 1.093, "viscosity": 1.963e-5, "thermal_conductivity": 0.02699},
+      "373K_100C": {"cp": 1011, "density": 0.946, "viscosity": 2.181e-5, "thermal_conductivity": 0.03095},
+      "473K_200C": {"cp": 1025, "density": 0.746, "viscosity": 2.570e-5, "thermal_conductivity": 0.03860},
+      "573K_300C": {"cp": 1045, "density": 0.616, "viscosity": 2.934e-5, "thermal_conductivity": 0.04600}
+    },
+    "prandtl_ref": 0.728,
+    "typical_use": ["combustion_air", "instrument_air", "cooling_air"]
+  },
+
+  "nitrogen": {
+    "name": "Nitrogen",
+    "formula": "N2",
+    "molecular_weight": 28.014,
+    "boiling_point": 77.36,
+    "phase_at_ref": "vapor",
+    "T_ref": 298.15,
+    "properties": {
+      "cp": 1040.0,
+      "density": 1.145,
+      "viscosity": 1.789e-5,
+      "thermal_conductivity": 0.02583
+    },
+    "temperature_variants": {
+      "323K_50C":  {"cp": 1041, "density": 1.057, "viscosity": 1.896e-5, "thermal_conductivity": 0.02728},
+      "373K_100C": {"cp": 1043, "density": 0.916, "viscosity": 2.096e-5, "thermal_conductivity": 0.03122}
+    },
+    "prandtl_ref": 0.720,
+    "typical_use": ["inert_blanket", "purge_gas", "cryogenic"]
+  },
+
+  "steam": {
+    "name": "Steam (superheated)",
+    "formula": "H2O",
+    "molecular_weight": 18.015,
+    "boiling_point": 373.15,
+    "phase_at_ref": "vapor",
+    "T_ref": 423.15,
+    "properties": {
+      "cp": 1996.0,
+      "density": 0.731,
+      "viscosity": 1.34e-5,
+      "thermal_conductivity": 0.02760
+    },
+    "temperature_variants": {
+      "423K_150C_1bar":   {"cp": 1996, "density": 0.731, "viscosity": 1.34e-5, "thermal_conductivity": 0.02760},
+      "473K_200C_1bar":   {"cp": 1975, "density": 0.659, "viscosity": 1.51e-5, "thermal_conductivity": 0.03275},
+      "523K_250C_1bar":   {"cp": 1964, "density": 0.596, "viscosity": 1.67e-5, "thermal_conductivity": 0.03831},
+      "453K_180C_10bar":  {"cp": 2030, "density": 6.044, "viscosity": 1.46e-5, "thermal_conductivity": 0.03044},
+      "523K_250C_40bar":  {"cp": 2310, "density": 24.53, "viscosity": 1.73e-5, "thermal_conductivity": 0.04500}
+    },
+    "prandtl_ref": 0.971,
+    "typical_use": ["heating_medium", "process_steam", "stripping"]
+  },
+
+  "ammonia": {
+    "name": "Ammonia",
+    "formula": "NH3",
+    "molecular_weight": 17.031,
+    "boiling_point": 239.82,
+    "phase_at_ref": "liquid",
+    "T_ref": 273.15,
+    "properties": {
+      "cp": 4744.0,
+      "density": 638.6,
+      "viscosity": 2.55e-4,
+      "thermal_conductivity": 0.540
+    },
+    "temperature_variants": {
+      "233K_-40C": {"cp": 4601, "density": 690.2, "viscosity": 3.06e-4, "thermal_conductivity": 0.594},
+      "273K_0C":   {"cp": 4744, "density": 638.6, "viscosity": 2.55e-4, "thermal_conductivity": 0.540},
+      "303K_30C":  {"cp": 4890, "density": 599.0, "viscosity": 2.02e-4, "thermal_conductivity": 0.493}
+    },
+    "prandtl_ref": 2.24,
+    "typical_use": ["refrigerant", "fertiliser_feed", "nitrogen_source"]
+  },
+
+  "sulphuric_acid_98": {
+    "name": "Sulphuric acid 98 wt%",
+    "formula": "H2SO4",
+    "molecular_weight": 98.079,
+    "boiling_point": 610.15,
+    "phase_at_ref": "liquid",
+    "T_ref": 298.15,
+    "properties": {
+      "cp": 1380.0,
+      "density": 1836.0,
+      "viscosity": 2.16e-2,
+      "thermal_conductivity": 0.347
+    },
+    "temperature_variants": {
+      "323K_50C":  {"cp": 1410, "density": 1814.0, "viscosity": 8.2e-3,  "thermal_conductivity": 0.350},
+      "373K_100C": {"cp": 1460, "density": 1782.0, "viscosity": 2.5e-3,  "thermal_conductivity": 0.355}
+    },
+    "prandtl_ref": 86.0,
+    "typical_use": ["acid_cooler", "absorption", "alkylation"]
+  },
+
+  "dowtherm_a": {
+    "name": "Dowtherm A (biphenyl/diphenyl oxide)",
+    "formula": null,
+    "molecular_weight": 166.0,
+    "boiling_point": 530.15,
+    "phase_at_ref": "liquid",
+    "T_ref": 423.15,
+    "properties": {
+      "cp": 1600.0,
+      "density": 958.0,
+      "viscosity": 8.0e-4,
+      "thermal_conductivity": 0.138
+    },
+    "temperature_variants": {
+      "473K_200C": {"cp": 1700, "density": 920.0, "viscosity": 5.0e-4, "thermal_conductivity": 0.132},
+      "573K_300C": {"cp": 1870, "density": 840.0, "viscosity": 2.5e-4, "thermal_conductivity": 0.120},
+      "673K_400C": {"cp": 2060, "density": 745.0, "viscosity": 1.5e-4, "thermal_conductivity": 0.108}
+    },
+    "prandtl_ref": 9.28,
+    "typical_use": ["high_temp_heat_transfer", "reactor_cooling"]
+  }
+}

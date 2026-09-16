@@ -1,0 +1,33 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Node / frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+ZIP/
+RUN_MD/
+.run_counter
+.run_counter_zip

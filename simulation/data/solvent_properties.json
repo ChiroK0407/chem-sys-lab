@@ -1,0 +1,193 @@
+{
+  "solvents": [
+    {
+      "solvent_id": "water",
+      "name": "Water",
+      "formula": "H2O",
+      "MW": 18.015,
+      "T_ref_K": 298.15,
+      "properties": {
+        "density_kg_m3": 997.0,
+        "viscosity_Pa_s": 8.9e-4,
+        "surface_tension_N_m": 0.0720,
+        "cp_J_kgK": 4182.0,
+        "thermal_conductivity_W_mK": 0.607
+      },
+      "temperature_variants": {},
+      "compatible_gases": ["CO2", "H2S", "SO2", "NH3", "HCl", "Cl2"],
+      "max_operating_T_C": 100.0,
+      "notes": "Universal solvent. Poor selectivity for H2S vs CO2."
+    },
+    {
+      "solvent_id": "MEA_30wt",
+      "name": "Monoethanolamine 30 wt%",
+      "formula": "HOCH2CH2NH2",
+      "MW": 61.08,
+      "T_ref_K": 298.15,
+      "properties": {
+        "density_kg_m3": 1060.0,
+        "viscosity_Pa_s": 3.5e-3,
+        "surface_tension_N_m": 0.055,
+        "cp_J_kgK": 3600.0,
+        "thermal_conductivity_W_mK": 0.45
+      },
+      "temperature_variants": {},
+      "compatible_gases": ["CO2", "H2S"],
+      "max_operating_T_C": 120.0,
+      "amine_loading_mol_mol": 0.5,
+      "regeneration_T_C": 120.0,
+      "heat_of_regeneration_kJ_mol": 80.0,
+      "notes": "Primary amine. Fast kinetics but high regeneration energy."
+    },
+    {
+      "solvent_id": "DEA_30wt",
+      "name": "Diethanolamine 30 wt%",
+      "formula": "HN(CH2CH2OH)2",
+      "MW": 105.14,
+      "T_ref_K": 298.15,
+      "properties": {
+        "density_kg_m3": 1080.0,
+        "viscosity_Pa_s": 4.0e-3,
+        "surface_tension_N_m": 0.056,
+        "cp_J_kgK": 3500.0,
+        "thermal_conductivity_W_mK": 0.42
+      },
+      "temperature_variants": {},
+      "compatible_gases": ["CO2", "H2S"],
+      "max_operating_T_C": 120.0,
+      "amine_loading_mol_mol": 0.4,
+      "regeneration_T_C": 125.0,
+      "heat_of_regeneration_kJ_mol": 70.0,
+      "notes": "Secondary amine. Moderate kinetics, lower heat duty than MEA."
+    },
+    {
+      "solvent_id": "MDEA_50wt",
+      "name": "Methyldiethanolamine 50 wt%",
+      "formula": "CH3N(CH2CH2OH)2",
+      "MW": 119.16,
+      "T_ref_K": 298.15,
+      "properties": {
+        "density_kg_m3": 1120.0,
+        "viscosity_Pa_s": 5.0e-3,
+        "surface_tension_N_m": 0.058,
+        "cp_J_kgK": 3400.0,
+        "thermal_conductivity_W_mK": 0.40
+      },
+      "temperature_variants": {},
+      "compatible_gases": ["H2S", "CO2"],
+      "max_operating_T_C": 130.0,
+      "amine_loading_mol_mol": 0.35,
+      "regeneration_T_C": 125.0,
+      "heat_of_regeneration_kJ_mol": 55.0,
+      "notes": "Tertiary amine. Selective for H2S, low regeneration energy."
+    },
+    {
+      "solvent_id": "NaOH_10wt",
+      "name": "Sodium Hydroxide 10 wt%",
+      "formula": "NaOH",
+      "MW": 40.00,
+      "T_ref_K": 298.15,
+      "properties": {
+        "density_kg_m3": 1100.0,
+        "viscosity_Pa_s": 1.5e-3,
+        "surface_tension_N_m": 0.070,
+        "cp_J_kgK": 3800.0,
+        "thermal_conductivity_W_mK": 0.55
+      },
+      "temperature_variants": {},
+      "compatible_gases": ["CO2", "SO2", "HCl"],
+      "max_operating_T_C": 80.0,
+      "notes": "Caustic scrubbing solution."
+    },
+    {
+      "solvent_id": "K2CO3_30wt",
+      "name": "Potassium Carbonate 30 wt%",
+      "formula": "K2CO3",
+      "MW": 138.21,
+      "T_ref_K": 298.15,
+      "properties": {
+        "density_kg_m3": 1250.0,
+        "viscosity_Pa_s": 2.0e-3,
+        "surface_tension_N_m": 0.068,
+        "cp_J_kgK": 3600.0,
+        "thermal_conductivity_W_mK": 0.50
+      },
+      "temperature_variants": {},
+      "compatible_gases": ["CO2"],
+      "max_operating_T_C": 150.0,
+      "notes": "Hot carbonate process solvent."
+    },
+    {
+      "solvent_id": "glycol_TEG",
+      "name": "Triethylene Glycol",
+      "formula": "C6H14O4",
+      "MW": 150.17,
+      "T_ref_K": 298.15,
+      "properties": {
+        "density_kg_m3": 1125.0,
+        "viscosity_Pa_s": 4.8e-3,
+        "surface_tension_N_m": 0.048,
+        "cp_J_kgK": 2400.0,
+        "thermal_conductivity_W_mK": 0.25
+      },
+      "temperature_variants": {},
+      "compatible_gases": ["water vapor"],
+      "max_operating_T_C": 200.0,
+      "notes": "Used for natural gas dehydration."
+    },
+    {
+      "solvent_id": "sulfolane",
+      "name": "Sulfolane",
+      "formula": "C4H8O2S",
+      "MW": 120.17,
+      "T_ref_K": 298.15,
+      "properties": {
+        "density_kg_m3": 1260.0,
+        "viscosity_Pa_s": 4.0e-3,
+        "surface_tension_N_m": 0.045,
+        "cp_J_kgK": 2300.0,
+        "thermal_conductivity_W_mK": 0.27
+      },
+      "temperature_variants": {},
+      "compatible_gases": ["aromatics", "CO2"],
+      "max_operating_T_C": 200.0,
+      "notes": "Aromatic extraction solvent."
+    },
+    {
+      "solvent_id": "propylene_carbonate",
+      "name": "Propylene Carbonate",
+      "formula": "C4H6O3",
+      "MW": 102.09,
+      "T_ref_K": 298.15,
+      "properties": {
+        "density_kg_m3": 1200.0,
+        "viscosity_Pa_s": 2.5e-3,
+        "surface_tension_N_m": 0.041,
+        "cp_J_kgK": 2200.0,
+        "thermal_conductivity_W_mK": 0.23
+      },
+      "temperature_variants": {},
+      "compatible_gases": ["CO2"],
+      "max_operating_T_C": 150.0,
+      "notes": "Physical solvent for CO2 absorption."
+    },
+    {
+        "solvent_id": "cold_methanol_Rectisol",
+        "name": "Cold Methanol (Rectisol)",
+        "formula": "CH3OH",
+        "MW": 32.04,
+        "T_ref_K": 273.15,
+        "properties": {
+            "density_kg_m3": 791.0,
+            "viscosity_Pa_s": 1.0e-3,
+            "surface_tension_N_m": 0.022,
+            "cp_J_kgK": 2500.0,
+            "thermal_conductivity_W_mK": 0.20
+        },
+        "temperature_variants": {},
+        "compatible_gases": ["CO2", "H2S", "COS", "CS2", "NH3"],
+        "max_operating_T_C": -40.0,
+        "notes": "Physical solvent process (Rectisol). Operates at cryogenic temperatures for selective removal of acid gases and impurities."
+        }
+    ]
+}

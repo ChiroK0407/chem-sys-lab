@@ -1,0 +1,98 @@
+{
+  "_metadata": {
+    "source": "Coulson & Richardson Vol. 1, Table 12.1 (6th ed.) + Towler & Sinnott Table 12.2",
+    "units": "W/(m2·K)",
+    "notes": "These are typical ranges for clean exchangers. Apply fouling factor Rd to get design U.",
+    "fouling_note": "TEMA fouling resistances: cooling water Rd=0.0002, process organics Rd=0.0002, steam Rd=0.00009 m2K/W"
+  },
+  "liquid_liquid": {
+    "U_min": 100,
+    "U_max": 800,
+    "typical": 400,
+    "description": "Liquid to liquid, both sides forced convection",
+    "examples": ["water-water", "oil-water", "organic-organic"],
+    "hot_phase": "liquid",
+    "cold_phase": "liquid"
+  },
+  "liquid_liquid_viscous": {
+    "U_min": 20,
+    "U_max": 300,
+    "typical": 100,
+    "description": "One or both sides high viscosity liquid (>50 cP)",
+    "examples": ["heavy oil-water", "polymer solution-water"],
+    "hot_phase": "liquid",
+    "cold_phase": "liquid"
+  },
+  "condensing_steam_liquid": {
+    "U_min": 500,
+    "U_max": 4000,
+    "typical": 1500,
+    "description": "Steam condensing on shell side, liquid on tube side",
+    "examples": ["steam heater", "reboiler (partial)"],
+    "hot_phase": "vapor",
+    "cold_phase": "liquid"
+  },
+  "condensing_steam_gas": {
+    "U_min": 30,
+    "U_max": 200,
+    "typical": 80,
+    "description": "Steam condensing, gas on other side",
+    "examples": ["steam-air heater", "steam-nitrogen"],
+    "hot_phase": "vapor",
+    "cold_phase": "vapor"
+  },
+  "condensing_organic_liquid": {
+    "U_min": 200,
+    "U_max": 1000,
+    "typical": 500,
+    "description": "Organic vapor condensing, liquid coolant",
+    "examples": ["condenser (distillation)", "organic vapour-CW"],
+    "hot_phase": "vapor",
+    "cold_phase": "liquid"
+  },
+  "liquid_vaporising": {
+    "U_min": 200,
+    "U_max": 1000,
+    "typical": 450,
+    "description": "Liquid being vaporised (kettle or thermosyphon reboiler)",
+    "examples": ["kettle reboiler", "thermosyphon reboiler"],
+    "hot_phase": "liquid",
+    "cold_phase": "vapor"
+  },
+  "gas_gas": {
+    "U_min": 10,
+    "U_max": 30,
+    "typical": 20,
+    "description": "Gas to gas, low pressure both sides",
+    "examples": ["air-air recuperator", "N2-N2"],
+    "hot_phase": "vapor",
+    "cold_phase": "vapor"
+  },
+  "gas_liquid": {
+    "U_min": 10,
+    "U_max": 50,
+    "typical": 25,
+    "description": "Gas on one side, liquid on other",
+    "examples": ["air cooler (fin-fan)", "gas-water"],
+    "hot_phase": "vapor",
+    "cold_phase": "liquid"
+  },
+  "liquid_gas_high_pressure": {
+    "U_min": 50,
+    "U_max": 300,
+    "typical": 150,
+    "description": "High pressure gas (>30 bar) with liquid",
+    "examples": ["HP gas cooler", "reactor feed-effluent (gas side)"],
+    "hot_phase": "vapor",
+    "cold_phase": "liquid"
+  },
+  "cooling_water_service": {
+    "U_min": 300,
+    "U_max": 900,
+    "typical": 600,
+    "description": "General cooling water service (process liquid hot side)",
+    "examples": ["product cooler", "intercooler"],
+    "hot_phase": "liquid",
+    "cold_phase": "liquid"
+  }
+}
