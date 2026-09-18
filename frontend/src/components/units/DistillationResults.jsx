@@ -1,8 +1,9 @@
-import { Droplets, Flame, Snowflake, GitBranch } from "lucide-react";
+import { Flame, Snowflake, GitBranch } from "lucide-react";
 import ResultCard from "../shared/ResultCard";
 import WarningBanner from "../shared/WarningBanner";
 import CalcLog from "../shared/CalcLog";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from "recharts";
+import SectionedResults from "../common/SectionedResults";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 function fmt(v, dp = 2) { return v == null ? "—" : Number(v).toFixed(dp); }
 
@@ -31,15 +32,11 @@ function CompTable({ title, comp }) {
 
 function McCabeThieleChart({ mc }) {
   if (!mc) return null;
-
-  // Build chart data
   const eqData  = mc.equilibrium.map(([x,y]) => ({ x, y_eq: y }));
-  const diagData = [{ x:0, y_diag:0 }, { x:1, y_diag:1 }];
   const rectData = mc.op_rect.map(([x,y])  => ({ x, y_rect: y }));
   const stripData= mc.op_strip.map(([x,y]) => ({ x, y_strip: y }));
   const stageData= mc.stages.map(([x,y])   => ({ x, y_stage: y }));
 
-  // Merge all for single chart
   const allX = [...new Set([
     ...eqData.map(d=>d.x), ...rectData.map(d=>d.x),
     ...stripData.map(d=>d.x), ...stageData.map(d=>d.x)
@@ -52,21 +49,16 @@ function McCabeThieleChart({ mc }) {
     const stage = stageData.find(d=>Math.abs(d.x-x)<0.001);
     return {
       x: parseFloat(x.toFixed(4)),
-      eq:    eq?.y_eq,
-      diag:  x,
-      rect:  rect?.y_rect,
-      strip: strip?.y_strip,
-      stage: stage?.y_stage,
+      eq: eq?.y_eq, diag: x, rect: rect?.y_rect, strip: strip?.y_strip, stage: stage?.y_stage,
     };
   });
 
   return (
-    <div className="card p-4">
-      <p className="section-title mb-1">McCabe-Thiele diagram</p>
+    <div>
       <p className="text-xs text-gray-400 mb-3">
         {mc.n_stages_mt} theoretical stages  |  Feed stage {mc.feed_stage_mt} from top
       </p>
-      <ResponsiveContainer width="100%" height={280}>
+      <ResponsiveContainer width="100%" height={320}>
         <LineChart data={merged} margin={{ top:5, right:20, bottom:20, left:10 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
           <XAxis dataKey="x" label={{ value:"x (liquid)", position:"insideBottom", offset:-10, fontSize:11 }} tick={{fontSize:11}} domain={[0,1]} />
@@ -84,44 +76,49 @@ function McCabeThieleChart({ mc }) {
   );
 }
 
-export default function DistillationResults({ result }) {
-  if (!result) return null;
-
-  return (
-    <div className="space-y-5">
-      <WarningBanner warnings={result.warnings} />
-
-      {/* Header */}
-      <div className="flex items-center gap-3 px-1">
-        <div className="rounded-xl bg-blue-50 border border-blue-200 p-2">
-          <GitBranch size={18} className="text-blue-600" />
+const RESULT_SCHEMA = [
+  {
+    id: "overview",
+    label: "Overview",
+    render: (result) => (
+      <>
+        <WarningBanner warnings={result.warnings} />
+        <div className="flex items-center gap-3 px-1">
+          <div className="rounded-xl bg-blue-50 border border-blue-200 p-2"><GitBranch size={18} className="text-blue-600" /></div>
+          <div>
+            <p className="text-sm font-semibold text-gray-900">{result.unit_id} — {result.n_components} components</p>
+            <p className="text-xs text-gray-500">
+              R/R_min = {result.R_Rmin_ratio}  |  η_tray = {result.tray_efficiency}  |  {result.condenser_type} condenser
+            </p>
+          </div>
         </div>
-        <div>
-          <p className="text-sm font-semibold text-gray-900">
-            {result.unit_id} — {result.n_components} components
-          </p>
-          <p className="text-xs text-gray-500">
-            R/R_min = {result.R_Rmin_ratio}  |  η_tray = {result.tray_efficiency}  |  {result.condenser_type} condenser
-          </p>
+      </>
+    ),
+  },
+  {
+    id: "stages",
+    label: "Stage Counts & Flows",
+    render: (result) => (
+      <>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <ResultCard label="N_min (Fenske)"    value={fmt(result.N_min)}          unit="stages" />
+          <ResultCard label="R_min (Underwood)" value={fmt(result.R_min, 4)}       unit="—" />
+          <ResultCard label="R operating"       value={fmt(result.R_operating, 4)} unit="—" highlight />
+          <ResultCard label="N theoretical"     value={fmt(result.N_theoretical)}  unit="stages" />
         </div>
-      </div>
-
-      {/* Key design results */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <ResultCard label="N_min (Fenske)"   value={fmt(result.N_min)}          unit="stages"    />
-        <ResultCard label="R_min (Underwood)"value={fmt(result.R_min, 4)}        unit="—"         />
-        <ResultCard label="R operating"      value={fmt(result.R_operating, 4)} unit="—"  highlight />
-        <ResultCard label="N theoretical"    value={fmt(result.N_theoretical)}  unit="stages"    />
-      </div>
-
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <ResultCard label="N actual"         value={result.N_actual}            unit="trays" highlight />
-        <ResultCard label="Feed stage"       value={result.feed_stage}          unit="from top"  />
-        <ResultCard label="Distillate D"     value={fmt(result.D_mol_s, 3)}     unit="mol/s"     />
-        <ResultCard label="Bottoms B"        value={fmt(result.B_mol_s, 3)}     unit="mol/s"     />
-      </div>
-
-      {/* Duties */}
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <ResultCard label="N actual"    value={result.N_actual}        unit="trays" highlight />
+          <ResultCard label="Feed stage"  value={result.feed_stage}      unit="from top" />
+          <ResultCard label="Distillate D" value={fmt(result.D_mol_s, 3)} unit="mol/s" />
+          <ResultCard label="Bottoms B"    value={fmt(result.B_mol_s, 3)} unit="mol/s" />
+        </div>
+      </>
+    ),
+  },
+  {
+    id: "duties",
+    label: "Duties",
+    render: (result) => (
       <div className="grid grid-cols-2 gap-3">
         <div className="rounded-xl border border-blue-200 bg-blue-50 p-4 flex items-start gap-3">
           <div className="rounded-lg bg-blue-100 p-1.5"><Snowflake size={16} className="text-blue-600" /></div>
@@ -138,20 +135,33 @@ export default function DistillationResults({ result }) {
           </div>
         </div>
       </div>
-
-      {/* Compositions */}
-      <div className="card p-4">
-        <p className="section-title mb-3">Product compositions</p>
-        <div className="grid grid-cols-2 gap-6">
-          <CompTable title="Distillate" comp={result.distillate_composition} />
-          <CompTable title="Bottoms"    comp={result.bottoms_composition} />
-        </div>
+    ),
+  },
+  {
+    id: "compositions",
+    label: "Product Compositions",
+    render: (result) => (
+      <div className="grid grid-cols-2 gap-6">
+        <CompTable title="Distillate" comp={result.distillate_composition} />
+        <CompTable title="Bottoms"    comp={result.bottoms_composition} />
       </div>
+    ),
+  },
+  {
+    id: "mccabe-thiele",
+    label: "McCabe-Thiele Diagram",
+    isVisible: (result) => !!result.mccabe_thiele,
+    render: (result) => <McCabeThieleChart mc={result.mccabe_thiele} />,
+  },
+  {
+    id: "log",
+    label: "Calculation Log",
+    isVisible: (result) => !!(result.calculation_log && result.calculation_log.length),
+    render: (result) => <CalcLog log={result.calculation_log} unitId={result.unit_id} />,
+  },
+];
 
-      {/* McCabe-Thiele (binary only) */}
-      {result.mccabe_thiele && <McCabeThieleChart mc={result.mccabe_thiele} />}
-
-      <CalcLog log={result.calculation_log} unitId={result.unit_id} />
-    </div>
-  );
+export default function DistillationResults({ result }) {
+  if (!result) return null;
+  return <SectionedResults schema={RESULT_SCHEMA} result={result} />;
 }
