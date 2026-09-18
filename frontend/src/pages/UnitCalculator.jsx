@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { Thermometer, Droplets, Activity, Layers, Combine, Split, FlaskConical, Wind} from "lucide-react";
+import { Thermometer, Droplets, Activity, Layers, Combine, Split, FlaskConical, Wind, Columns3 } from "lucide-react";
 import PageWrapper from "../components/layout/PageWrapper";
 import HXForm from "../components/units/HXForm";
 import HXResults from "../components/units/HXResults";
@@ -16,6 +16,8 @@ import ReactorResults from "../components/units/ReactorResults";
 import AbsorberForm from "../components/units/AbsorberForm";
 import StripperForm from "../components/units/StripperForm";
 import AbsorberResults from "../components/units/AbsorberResults";
+import DistillationForm from "../components/units/DistillationForm";
+import DistillationResults from "../components/units/DistillationResults";
 
 const UNITS = [
   { id: "heat-exchanger", label: "Heat Exchanger", icon: Thermometer, enabled: true },
@@ -26,6 +28,7 @@ const UNITS = [
   { id: "pfr",      label: "PFR",      icon: Layers,   enabled: true },
   { id: "absorber",  label: "Absorber",  icon: Wind,     enabled: true },
   { id: "stripper",  label: "Stripper",  icon: Droplets, enabled: true },
+  { id: "distillation", label: "Distillation", icon: Columns3, enabled: true },
 ];
 
 export default function UnitCalculator() {
@@ -48,7 +51,7 @@ export default function UnitCalculator() {
       </div>
 
       {/* Unit selector tabs */}
-      <div className="flex gap-2 mb-6 border-b border-gray-200 pb-0">
+      <div className="flex gap-2 mb-6 border-b border-gray-200 pb-0 flex-wrap">
         {UNITS.map(({ id, label, icon: Icon, enabled }) => (
           <button
             key={id}
@@ -92,10 +95,13 @@ export default function UnitCalculator() {
             <PFRForm onResult={setResult} />
           )}
           {activeUnit === "absorber" && (
-          <AbsorberForm onResult={setResult} />
+            <AbsorberForm onResult={setResult} />
           )}
           {activeUnit === "stripper" && (
-          <StripperForm onResult={setResult} />
+            <StripperForm onResult={setResult} />
+          )}
+          {activeUnit === "distillation" && (
+            <DistillationForm onResult={setResult} />
           )}
         </div>
 
@@ -115,9 +121,13 @@ export default function UnitCalculator() {
             ) : activeUnit === "pfr" ? (
               <ReactorResults result={result} />
             ) : activeUnit === "absorber" ? (
+              // AbsorberResults renders both Absorber and Stripper output
+              // (it branches internally on data.unit_type === "Stripper").
               <AbsorberResults result={result} />
             ) : activeUnit === "stripper" ? (
-              <StripperResults result={result} />
+              <AbsorberResults result={result} />
+            ) : activeUnit === "distillation" ? (
+              <DistillationResults result={result} />
             ) : null
           ) : (
             <div className="rounded-xl border-2 border-dashed border-gray-200 p-12 text-center">

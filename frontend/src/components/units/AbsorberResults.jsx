@@ -2,7 +2,7 @@ import React from 'react';
 // Mock import mapping. Adjust according to where your frontend components folder houses CalcLog.
 import CalcLog from '../shared/CalcLog';
 
-export default function AbsorberResults({ data }) {
+export default function AbsorberResults({ result: data }) {
   if (!data || !data.is_solved) return null;
 
   const isStripper = data.unit_type === "Stripper";
