@@ -24,6 +24,7 @@ from backend.schemas.reference_schema import (
     UValueEntry,
     SteamSaturationOut,
 )
+from backend.schemas.units.hx_catalog import EXCHANGER_CLASS_CATALOG
 from simulation.data.loader import (
     list_fluids,
     get_fluid_properties,
@@ -170,6 +171,35 @@ async def suggest_u(
         description=u["description"],
         examples=u["examples"],
     )
+
+
+# ── Heat exchanger catalog endpoints ─────────────────────────────────────────
+
+@router.get(
+    "/hx-types",
+    summary="List available heat exchanger class catalog entries",
+)
+async def list_hx_types() -> List[dict]:
+    """
+    Returns the mechanical design catalog used by the frontend selector.
+    Each record includes the key and the metadata needed to populate the
+    TEMA / industrial HX selector UI.
+    """
+    records = []
+    for class_key, meta in EXCHANGER_CLASS_CATALOG.items():
+        records.append({
+            "key": class_key.name,
+            "extended_name": meta.get("extended_name"),
+            "max_design_pressure_bar": meta.get("max_design_pressure_bar"),
+            "max_design_temp_c": meta.get("max_design_temp_c"),
+            "allows_phase_change": meta.get("allows_phase_change", False),
+            "typical_u_min": meta.get("typical_u_min"),
+            "typical_u_mid": meta.get("typical_u_mid"),
+            "typical_u_max": meta.get("typical_u_max"),
+            "best_for": meta.get("best_for", []),
+            "not_suitable_for": meta.get("not_suitable_for", []),
+        })
+    return records
 
 
 # ── Steam endpoints ───────────────────────────────────────────────────────────
