@@ -28,7 +28,7 @@
 
 import { useEffect, useState } from "react";
 import { Save, RotateCcw, AlertCircle } from "lucide-react";
-import SectionSidebar from "./SectionSidebar";
+import SectionSwitcher from "./SectionSwitcher";
 import UnitField from "./UnitField";
 
 function fieldsToDraft(fields, values) {
@@ -38,6 +38,7 @@ function fieldsToDraft(fields, values) {
 }
 
 export default function SectionedForm({
+  title = "Input Space",
   schema,             // [{ id, label, fields?: [...], keys?: [...], custom?: (draft, setField) => JSX, validate?: (draft) => true | string }]
   values,             // full committed values object, owned by the caller
   onChange,           // (key, value) => void — called once per key on Save
@@ -108,53 +109,45 @@ export default function SectionedForm({
   );
 
   return (
-    <div className="card p-0 overflow-hidden">
-      <div className="flex">
-        <div className="p-4">
-          <SectionSidebar
-            sections={schema}
-            activeId={section.id}
-            unlockedIds={unlockedIds}
-            savedIds={savedSectionIds}
-            onSelect={onActiveChange}
-          />
+    <div className="card p-5">
+      <SectionSwitcher
+        title={title}
+        sections={schema}
+        activeId={section.id}
+        unlockedIds={unlockedIds}
+        savedIds={savedSectionIds}
+        onSelect={onActiveChange}
+      />
+
+      {section.description && <p className="text-xs text-gray-400 -mt-2 mb-3">{section.description}</p>}
+
+      <div className="divide-y divide-gray-50">
+        {section.custom
+          ? section.custom(draft, setField)
+          : section.fields.map((f) => (
+              <FieldRenderer key={f.key} field={f} value={draft[f.key]} onChange={(v) => setField(f.key, v)} />
+            ))}
+      </div>
+
+      {section.extra && (
+        <div className="mt-3 pt-3 border-t border-gray-50">
+          {section.extra(draft, setField)}
         </div>
+      )}
 
-        <div className="flex-1 p-5 min-w-0">
-          <div className="mb-3">
-            <p className="section-title">{section.label}</p>
-            {section.description && <p className="text-xs text-gray-400 mt-0.5">{section.description}</p>}
-          </div>
-
-          <div className="divide-y divide-gray-50">
-            {section.custom
-              ? section.custom(draft, setField)
-              : section.fields.map((f) => (
-                  <FieldRenderer key={f.key} field={f} value={draft[f.key]} onChange={(v) => setField(f.key, v)} />
-                ))}
-          </div>
-
-          {section.extra && (
-            <div className="mt-3 pt-3 border-t border-gray-50">
-              {section.extra(draft, setField)}
-            </div>
-          )}
-
-          {error && (
-            <div className="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 mt-3 text-xs text-red-700">
-              <AlertCircle size={13} className="flex-shrink-0" /> {error}
-            </div>
-          )}
-
-          <div className="flex gap-2 mt-4 pt-3 border-t border-gray-100">
-            <button type="button" onClick={handleSave} className="btn-primary text-xs py-1.5">
-              <Save size={13} /> Save section
-            </button>
-            <button type="button" onClick={handleReset} className="btn-secondary text-xs py-1.5">
-              <RotateCcw size={13} /> Reset section
-            </button>
-          </div>
+      {error && (
+        <div className="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 mt-3 text-xs text-red-700">
+          <AlertCircle size={13} className="flex-shrink-0" /> {error}
         </div>
+      )}
+
+      <div className="flex gap-2 mt-4 pt-3 border-t border-gray-100">
+        <button type="button" onClick={handleSave} className="btn-primary text-xs py-1.5">
+          <Save size={13} /> Save section
+        </button>
+        <button type="button" onClick={handleReset} className="btn-secondary text-xs py-1.5">
+          <RotateCcw size={13} /> Reset section
+        </button>
       </div>
     </div>
   );
